@@ -1,4 +1,5 @@
-This is a ROS Publisher/Subscriber demo
+#This is a ROS Publisher/Subscriber demo
+
 To build and run follow the steps:
 1. 
 $ cd ~/catkin_ws/
@@ -12,7 +13,7 @@ $ roscore
 catkin specific If you are using catkin, make sure you have sourced your workspace's setup.sh file after calling catkin_make but before trying to use your applications:
 
 
-# In your catkin workspace
+In your catkin workspace
 $ cd ~/catkin_ws
 $ source ./devel/setup.bash
 Run the publisher called "talker"
