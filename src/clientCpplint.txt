@@ -1,0 +1,4 @@
+Client.cpp:23:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+Client.cpp:68:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+Done processing Client.cpp
+Total errors found: 2

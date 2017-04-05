@@ -20,12 +20,12 @@
 #include <sstream>
 #include "beginner_tutorials/TalkerService.h"
 
-bool callbackfunction(beginner_tutorials::TalkerService::Request &req,beginner_tutorials::TalkerService::Response &resp) {
+bool callbackfunction(beginner_tutorials::TalkerService::Request &req, beginner_tutorials::TalkerService::Response &resp) {
   std::stringstream ss;
-  ROS_INFO("Request: %s",req.request_string.c_str());
+  ROS_INFO("Request: %s", req.request_string.c_str());
   ss << "Request get";
   resp.response_string = ss.str();
-  ROS_INFO("Respond: %s ",resp.response_string.c_str());
+  ROS_INFO("Respond: %s", resp.response_string.c_str());
 }
 
 int main(int argc, char **argv) {
@@ -73,8 +73,8 @@ int main(int argc, char **argv) {
    * A count of how many messages we have sent. This is used to create
    * a unique string for each message.
    */
-	
-  ros::ServiceServer server = n.advertiseService("TextService",&callbackfunction);
+
+  ros::ServiceServer server = n.advertiseService("TextService", &callbackfunction);
 
 
 

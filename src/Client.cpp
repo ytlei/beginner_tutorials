@@ -20,8 +20,7 @@
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
 void chatterCallback(const std_msgs::String::ConstPtr& msg) {
-  ROS_INFO("I get from Zejiang's custom string from talker_node: [%s]",
-           msg->data.c_str());
+  ROS_INFO("I get from Zejiang's custom string from talker_node: [%s]", msg->data.c_str());
 }
 
 int main(int argc, char **argv) {
@@ -70,15 +69,14 @@ int main(int argc, char **argv) {
   beginner_tutorials::TalkerService::Request req;
   beginner_tutorials::TalkerService::Response resp;
 
-  bool success = client.call(req,resp);
+  bool success = client.call(req, resp);
 
 
-  if(success) {
-	ROS_INFO_STREAM("new message:" << req.request_string.c_str() );
-  }
-  else {
-	ROS_ERROR_STREAM("Fail to call().");
-	return 1;
+  if (success) {
+    ROS_INFO_STREAM("new message:" << req.request_string.c_str() );
+  } else {
+    ROS_ERROR_STREAM("Fail to call.");
+    return 1;
   }
   ros::spin();
 

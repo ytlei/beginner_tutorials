@@ -1,0 +1,7 @@
+service.cpp:20:  Found C++ system header after other header. Should be: service.h, c system, c++ system, other.  [build/include_order] [4]
+service.cpp:23:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+service.cpp:23:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::TalkerService::Request &req  [runtime/references] [2]
+service.cpp:23:  Is this a non-const reference? If so, make const or use a pointer: beginner_tutorials::TalkerService::Response &resp  [runtime/references] [2]
+service.cpp:77:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+Done processing service.cpp
+Total errors found: 5
