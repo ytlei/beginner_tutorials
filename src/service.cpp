@@ -10,8 +10,9 @@
  *   
  *
  *   @author	Yi-ting Lei
- *   @date	2017/3/28
+ *   @date	2017/4/4
  */
+
 
 
 #include "ros/ros.h"
@@ -19,12 +20,12 @@
 #include <sstream>
 #include"beginner_tutorials/TalkerService.h"
 
-bool TalkerService_interaction(beginner_tutorials::TalkerService::Request &req,beginner_tutorials::TalkerService::Response &resp) {
-  ROS_INFO("Request  from General: %s",req.request_string.c_str());
+bool callbackfunction(beginner_tutorials::TalkerService::Request &req,beginner_tutorials::TalkerService::Response &resp) {
   std::stringstream ss;
-  ss << "Order Received, General! ";
+  ROS_INFO("Request: %s",req.request_string.c_str());
+  ss << "Request get";
   resp.response_string = ss.str();
-  ROS_INFO("Response from soldier: %s ",resp.response_string.c_str());
+  ROS_INFO("Respond: %s ",resp.response_string.c_str());
 }
 
 int main(int argc, char **argv) {
@@ -73,7 +74,7 @@ int main(int argc, char **argv) {
    * a unique string for each message.
    */
 	
-  ros::ServiceServer server = n.advertiseService("changeText",&callbackfunction);
+  ros::ServiceServer server = n.advertiseService("TextService",&callbackfunction);
 
 
 

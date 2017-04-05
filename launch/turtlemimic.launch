@@ -1,16 +1,15 @@
 <launch>
 
-  <group ns="turtlesim1">
-    <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+  <group ns="talker">
+    <node pkg="chattersim" name="sim" type="talker.cpp"/>
   </group>
 
-  <group ns="turtlesim2">
-    <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+  <group ns="listener">
+    <node pkg="chattersim" name="sim" type="listener.cpp"/>
   </group>
 
-  <node pkg="turtlesim" name="mimic" type="mimic">
-    <remap from="input" to="turtlesim1/turtle1"/>
-    <remap from="output" to="turtlesim2/turtle1"/>
+  <node pkg="chattersim" name="chat" type="chatter_node">
+ 
   </node>
 
 </launch>

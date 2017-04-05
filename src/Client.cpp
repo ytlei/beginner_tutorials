@@ -65,14 +65,15 @@ int main(int argc, char **argv) {
    * callbacks will be called from within this thread (the main one).  ros::spin()
    * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
    */
-  ros::ServiceClient client = n.serviceClient<std_msgs::String>("changeText");
-  std_msgs::String mesg;
-	
-  bool success = client.call(mesg);
+  ros::ServiceClient client = n.serviceClient<beginner_tutorials::TalkerService>("TextService");
+  beginner_tutorials::TalkerService::Request req;
+  beginner_tutorials::TalkerService::Response resp;
+
+  bool success = client.call(req,resp);
 
 
   if(success) {
-	ROS_INFO_STREAM("new message:" << mesg);
+	ROS_INFO_STREAM("new message:" << req.request_string.c_str() );
   }
   else {
 	ROS_ERROR_STREAM("Fail to call().");

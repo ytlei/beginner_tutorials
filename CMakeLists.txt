@@ -105,6 +105,15 @@ add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener beginner_tutorials_generate_messages_cpp)
 
+add_executable(TalkerService src/service.cpp)
+add_executable(TalkerClient src/Client.cpp)
+
+target_link_libraries(TalkerService ${catkin_LIBRARIES})
+target_link_libraries(TalkerClient ${catkin_LIBRARIES})
+
+add_dependencies(TalkerService ${beginner_tutorials_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(TalkerService TalkerService_msgs_generate_messages_cpp)
+
 ## Declare a cpp library
 # add_library(beginner_tutorials
 #   src/${PROJECT_NAME}/beginner_tutorials.cpp
