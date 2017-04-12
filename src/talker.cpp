@@ -28,7 +28,7 @@ void sendingTF(){
   q.setRPY(0, 0, 1);
   transform.setRotation(q);
 
-ROS_INFO("broadcast");
+//ROS_INFO("broadcast");
   br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
 }
 

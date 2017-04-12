@@ -73,14 +73,13 @@ int main(int argc, char **argv) {
    */
   ros::Publisher chatter_pub = n.advertise < std_msgs::String
       > ("chatter", 1000);
-  ros::Rate loop_rate(110);
+  ros::Rate loop_rate(5);
   /**
    * A count of how many messages we have sent. This is used to create
    * a unique string for each message.
    */
 
- sendingTF();
- 
+
   
   int count = 0;
   while (ros::ok()) {
@@ -102,7 +101,8 @@ int main(int argc, char **argv) {
     ros::spinOnce();
     loop_rate.sleep();
     ++count;
-
+ sendingTF();
+ 
 
 
 
