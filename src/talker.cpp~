@@ -16,9 +16,26 @@
 #include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-/**
- * This tutorial demonstrates simple sending of messages over the ROS system.
- */
+#include <tf/transform_broadcaster.h>
+
+
+
+void sendingTF(){
+  static tf::TransformBroadcaster br;
+  tf::Transform transform;
+  transform.setOrigin( tf::Vector3(1.0, 2.0, 0.0) );
+  tf::Quaternion q;
+  q.setRPY(0, 0, 1);
+  transform.setRotation(q);
+
+ROS_INFO("broadcast");
+  br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
+}
+
+
+
+
+
 int main(int argc, char **argv) {
   /**
    * The ros::init() function needs to see argc and argv so that it can perform
@@ -37,6 +54,7 @@ int main(int argc, char **argv) {
    * NodeHandle destructed will close down the node.
    */
   ros::NodeHandle n;
+ 
   /**
    * The advertise() function is how you tell ROS that you want to
    * publish on a given topic name. This invokes a call to the ROS
@@ -55,11 +73,15 @@ int main(int argc, char **argv) {
    */
   ros::Publisher chatter_pub = n.advertise < std_msgs::String
       > ("chatter", 1000);
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate(110);
   /**
    * A count of how many messages we have sent. This is used to create
    * a unique string for each message.
    */
+
+ sendingTF();
+ 
+  
   int count = 0;
   while (ros::ok()) {
     /**
@@ -67,7 +89,7 @@ int main(int argc, char **argv) {
      */
     std_msgs::String msg;
     std::stringstream ss;
-    ss << "This is a modified message " << cou
+    ss << "This is a modified message " ;
     msg.data = ss.str();
     ROS_INFO("%s", msg.data.c_str());
     /**
@@ -80,6 +102,11 @@ int main(int argc, char **argv) {
     ros::spinOnce();
     loop_rate.sleep();
     ++count;
+
+
+
+
   }
+
   return 0;
 }

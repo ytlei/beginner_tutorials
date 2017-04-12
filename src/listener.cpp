@@ -14,6 +14,7 @@
 
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include <tf/transform_listener.h>
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
@@ -58,6 +59,25 @@ int main(int argc, char **argv) {
    * callbacks will be called from within this thread (the main one).  ros::spin()
    * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
    */
+
+
+  tf::TransformListener listener;
+
+
+  ros::Rate rate(10.0);
+  while (n.ok()){
+    tf::StampedTransform transform;
+    try{
+      listener.lookupTransform("/talk","/world",
+                               ros::Time(0), transform);
+    }
+    catch (tf::TransformException &ex) {
+      ROS_ERROR("%s",ex.what());
+      ros::Duration(1.0).sleep();
+      continue;
+    }
+    rate.sleep();
+  }
   ros::spin();
   return 0;
 }
